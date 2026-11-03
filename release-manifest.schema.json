@@ -9,15 +9,28 @@
     "schema_version": {"const": 1},
     "product": {"const": "Literae"},
     "version": {"type": "string", "minLength": 1},
-    "tag": {"type": "string", "pattern": "^v"},
-    "release_page": {"type": "string", "format": "uri", "pattern": "^https://github\\.com/dong956/Literae-Releases/releases/tag/"},
+    "tag": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"},
+    "release_page": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://github\\.com/dong956/Literae-Releases/releases/tag/"
+    },
     "assets": {
       "type": "array",
       "minItems": 1,
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["platform", "architecture", "kind", "filename", "bytes", "sha256", "download_url", "local_ocr_bundled"],
+        "required": [
+          "platform",
+          "architecture",
+          "kind",
+          "filename",
+          "bytes",
+          "sha256",
+          "download_url",
+          "local_ocr_bundled"
+        ],
         "properties": {
           "platform": {"enum": ["macos", "windows"]},
           "architecture": {"enum": ["arm64", "x64"]},
@@ -25,7 +38,11 @@
           "filename": {"type": "string", "minLength": 1},
           "bytes": {"type": "integer", "minimum": 1},
           "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
-          "download_url": {"type": "string", "format": "uri", "pattern": "^https://github\\.com/dong956/Literae-Releases/releases/download/"},
+          "download_url": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://github\\.com/dong956/Literae-Releases/releases/download/"
+          },
           "local_ocr_bundled": {"type": "boolean"}
         }
       }
